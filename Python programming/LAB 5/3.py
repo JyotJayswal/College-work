@@ -7,10 +7,9 @@ random_lst=[random.randint(1,30) for i in range(1,51)]
 print(random_lst)
 l1=[]
 
-for i in range(0,50):
-    for j in random_lst:
-        if(random_lst[i]==j):
-            # l1.append(j)
-            random_lst.remove(i)
-# print(l1)  
-print(random_lst)          
+for i in random_lst:
+        if(i not in l1):
+            l1.append(i)
+
+l1.sort()
+print(l1)          
