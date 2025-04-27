@@ -4,8 +4,9 @@
 
 price={"rice":120,"oil":180,"milk":32,"flour":60,"maggie":25}
 quantity={"rice":5,"oil":2,"milk":4,"flour":10,"maggie":10}
-bill=0
-for i in price: 
-        bill=(bill)+(price[i]*quantity[i])
+bill=0  #initialise bill amount as zero
 
-print("Total bill is:",bill)
+for i in price.keys(): # accessing keys of price dictionary 
+        bill=(bill)+(price[i]*quantity[i])  #access respective values to do respective multiply & sum
+
+print("Total bill is:",bill)    #print total bill
