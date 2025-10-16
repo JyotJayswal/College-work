@@ -33,7 +33,7 @@ int main() {
     printf("Enter the number you want to search: ");
     scanf("%d", &target);
 
-    int result = binary_search(n, arr[n], target);
+    int result = binary_search(arr, n , target);
 
     if (result != -1)
         printf("Element found at index: %d\n", result);

@@ -2,8 +2,7 @@
 Modify this program to give the second largest and second smallest element of the array.*/
 
 // this code fails if you enter 1 as your 1st element of array.
-
-
+#include<stdio.h>
 int maximum(int n,int arr[]){
     int max=arr[0];
     for(int i=0;i<n;i++){

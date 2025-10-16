@@ -2,7 +2,6 @@
 as its data members. Create the variable of type student and print the values*/
 
 #include<stdio.h>
-
 struct student{ //create a structure student
     char name[20];  
     int roll;   

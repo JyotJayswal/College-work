@@ -2,7 +2,6 @@
 Create an array of 5 students and print their values.*/
 
 #include <stdio.h>
-
 struct student{ //create a structure student
     char name[20];
     int roll;
@@ -10,8 +9,11 @@ struct student{ //create a structure student
 };
 
 int main(){
-     struct student students[5];  //declaration of array of structure variable
-    for(int i=0;i<5;i++){
+    int size;
+    printf("enter the number of students:");
+    scanf("%d",&size);
+     struct student students[size];  //declaration of array of structure variable
+    for(int i=0;i<size;i++){
         printf("Enter the details of student %d:\n",i+1);
 
         printf("Enter the name of student:");
@@ -25,13 +27,12 @@ int main(){
         
     }
     printf("Details of students are as follows:\n");
-    for(int i=0;i<5;i++){
+    for(int i=0;i<size;i++){
         printf("\nStudent %d:",i+1);
         printf("\nName: %s",students[i].name);
         printf("\nRoll no: %d",students[i].roll);
         printf("\nAddress: %s",students[i].address);
 
     }
-
 return 0;
 }
