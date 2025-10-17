@@ -3,46 +3,65 @@ Next,create another structure Employee that is nested in structure Organization 
 employee salary and employee name as its data members.
 Write a program in such a way that there are two organizations and each of these contains two employees.*/
 
-#include<stdio.h>
-struct organization{    //create a structure organization
-    char org_name[20];
-    int org_id;
+#include <stdio.h>
+#include <string.h>
 
-    struct employee{    //nested structure employee
-        int emp_id;
-        float emp_salary;
-        char emp_name[20];
-    }emps[2]; //array of structure emp
+struct Employee {
+    int emp_id;
+    float emp_salary;
+    char emp_name[30];
 };
 
-void print_info(struct organization orgs[]){
-    for(int i=0;i<2;i++){
-        printf("\n--- Organization: %s (ID: %d) ---\n", orgs[i].org_name, orgs[i].org_id);
-        for(int j=0;j<2;j++){
+struct Organization {
+    char org_name[30];
+    int org_id;
+    struct Employee emps[2];
+};
+
+// Function to clear leftover newline characters from input buffer
+void clearBuffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
+void display(struct Organization orgs[], int orgCount) {
+    for (int i = 0; i < orgCount; i++) {
+        printf("\n===== Organization: %s (ID: %d) =====\n", orgs[i].org_name, orgs[i].org_id);
+        for (int j = 0; j < 2; j++) {
             printf("Employee Name : %s\n", orgs[i].emps[j].emp_name);
             printf("Employee ID   : %d\n", orgs[i].emps[j].emp_id);
-            printf("Salary        : %.2f\n\n", orgs[i].emps[j].emp_salary);
+            printf("Employee Salary: %.2f\n\n", orgs[i].emps[j].emp_salary);
         }
     }
 }
-void main(){
-    struct organization orgs[2];  //declaration of array of structure variable
-    for(int i=0;i<2;i++){   //for accessing the structure organization
 
-        printf("enter the name of organization: ");
-        scanf("%s",orgs[i].org_name);
-        printf("enter the id of organization:");
-        scanf("%d",&orgs[i].org_id);
-        printf("enter the details of 2 employees of %s organization:\n",orgs[i].org_name);
+int main() {
+    struct Organization orgs[2];
 
-        for(int j=0;j<2;j++){   //for accessing the structure employee
-            printf("Enter the name of employee: ");
-            scanf("%s",orgs[i].emps[j].emp_name);
-            printf("Enter the id of employee: ");
-            scanf("%d",&orgs[i].emps[j].emp_id);
-            printf("Enter the salary of employee: ");
-            scanf("%f",&orgs[i].emps[j].emp_salary);
+    for (int i = 0; i < 2; i++) {
+        printf("\nEnter the name of organization %d: ", i + 1);
+        scanf(" %[^\n]", orgs[i].org_name);
+        clearBuffer();
+
+        printf("Enter the ID of organization %d: ", i + 1);
+        scanf("%d", &orgs[i].org_id);
+        clearBuffer();
+
+        printf("\nEnter details of 2 employees of %s:\n", orgs[i].org_name);
+        for (int j = 0; j < 2; j++) {
+            printf("\nEmployee %d name: ", j + 1);
+            scanf(" %[^\n]", orgs[i].emps[j].emp_name);
+            clearBuffer();
+
+            printf("Employee %d ID: ", j + 1);
+            scanf("%d", &orgs[i].emps[j].emp_id);
+            clearBuffer();
+
+            printf("Employee %d salary: ", j + 1);
+            scanf("%f", &orgs[i].emps[j].emp_salary);
+            clearBuffer();
         }
     }
-    print_info(orgs);
+    display(orgs, 2);
+    return 0;
 }
